@@ -1,0 +1,197 @@
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: url("../images/Login_background_.jpg") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Dark overlay */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.70);
+  z-index: -1;
+}
+
+/* ===== MAIN POSITION ===== */
+.position {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== SIGNUP CARD ===== */
+.signupbox {
+  width: 380px;
+  padding: 45px 35px;
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  animation: fadeInScale 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  transition: 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.signupbox::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.5), transparent);
+}
+
+/* Hover glow */
+.signupbox:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* ===== LOGO ===== */
+.logo {
+  font-family: 'Orbitron', sans-serif;
+  color: #38bdf8;
+  font-size: 18px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+/* ===== HEADING ===== */
+.signupbox h2 {
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+/* ===== INPUT GROUP ===== */
+.input-group {
+  margin-bottom: 18px;
+}
+
+/* ===== INPUT FIELD ===== */
+input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+/* Input focus effect */
+input:focus {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.05);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+}
+
+/* ===== TERMS SECTION ===== */
+.terms {
+  margin: 18px 0 25px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Label wrapper */
+.checkbox-label {
+  display: flex;
+  align-items: center;   /* vertical center */
+  gap: 10px;             /* space between box & text */
+  font-size: 13px;
+  color: #94a3b8;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Checkbox */
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #38bdf8;
+  cursor: pointer;
+}
+
+/* Link styling */
+.checkbox-label a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.checkbox-label a:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+/* ===== BUTTON ===== */
+.signup-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+/* Button hover */
+.signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.4);
+}
+
+/* ===== LOGIN LINK ===== */
+.login-link {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.login-link a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #7dd3fc;
+  text-decoration: underline;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

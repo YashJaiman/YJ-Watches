@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-up | YJ Watches</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <link rel="stylesheet" href="css/signup.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="position">
+    <div class="signupbox">
+
+        <div class="logo"></div>
+
+        <h2>Create Account</h2>
+
+<form id="signupForm">
+
+    <div class="input-group">
+        <input type="text" id="fullname" aria-label="Full Name" placeholder="Full Name" required>
+    </div>
+
+    <div class="input-group">
+        <input type="email" id="email" aria-label="Email Address" placeholder="Email Address" required>
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="password" aria-label="Password" placeholder="Password" required>
+    </div>
+
+    <div class="input-group">
+        <input type="password" id="confirmPassword" aria-label="Confirm Password" placeholder="Confirm Password" required>
+    </div>
+
+    <div class="terms">
+        <label class="checkbox-label">
+            <input type="checkbox" id="terms">
+            <span>
+                I accept the 
+                <a href="terms.html">Terms & Conditions</a>
+            </span>
+        </label>
+    </div>
+
+    <button type="submit" class="signup-btn">Sign Up</button>
+
+</form>
+
+        <p class="login-link">
+            Already have an account?
+            <a href="index.html">Login</a>
+        </p>
+
+    </div>
+</div>
+<script type="module" src="js/signup.js"></script>
+<script type="module" src="js/brandLogo.js"></script>
+</body>
+</html>

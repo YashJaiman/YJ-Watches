@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | YJ Watches</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/Home.css">
+    <link rel="stylesheet" href="css/category.css">
+    <link rel="stylesheet" href="css/search.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="head-bar">
+    <!-- Logo -->
+    <div class="logo"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="homebtn">
+            <a href="Home.html" class="nav-link">Home</a>
+        </div>  
+        
+        <div class="categorybtn">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-category">
+                <a href="category.html?category=Luxury">Luxury</a>
+                <a href="category.html?category=Sport">Sport</a>
+                <a href="category.html?category=Classic">Classic</a>
+                <a href="category.html?category=Smart">Smart</a>
+                <a href="category.html?category=Fitness">Fitness</a>
+                <a href="category.html?category=Casual">Casual</a>
+                <a href="category.html?category=Premium">Premium</a>
+                <a href="category.html?category=Digital">Digital</a>
+                <a href="category.html?category=Women">Women</a>
+                <a href="category.html?category=Men">Men</a>
+            </div>
+        </div>
+        
+        <div class="homebtn">
+            <a href="About.html" class="nav-link">About</a>
+        </div> 
+
+        <div class="homebtn">
+            <a href="cart.html" class="nav-link">Cart</a>
+        </div>
+
+        <div class="homebtn">
+            <a href="index.html" id="authLink" class="nav-link">Login</a>
+        </div>
+    </nav>
+
+    <!-- Search -->
+    <form class="search-bar">
+        <input type="text" aria-label="Search products" placeholder="Search">
+    </form>
+</header>
+
+<main class="search-main">
+    <!-- Search Results Header -->
+    <div class="search-header-banner">
+        <h1 class="search-query-title">Search Results for: <span id="searchQueryText">"..."</span></h1>
+        <div class="search-meta">
+            Found <span id="searchTotalCount">0</span> matches across our luxury vault
+        </div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="searchEmptyState" class="search-empty-state" style="display: none;">
+        <div class="search-empty-icon">🔍</div>
+        <h2 class="search-empty-title">No Exact Matches Found</h2>
+        <p class="search-empty-text">We couldn't find any timepieces matching your query. Explore our popular featured collections below.</p>
+    </div>
+
+    <!-- Layout Grid -->
+    <div class="category-layout" id="searchMainLayout">
+        <!-- Sidebar Filters -->
+        <aside class="filter-sidebar">
+            <div class="filter-group">
+                <h3 class="filter-group-title">Categories</h3>
+                <div id="categoryFilterContainer" class="category-list">
+                    <!-- Categories check box choices populated dynamically -->
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3 class="filter-group-title">Brands</h3>
+                <div id="brandFilterContainer" class="brand-list">
+                    <!-- Brands checklist loaded dynamically -->
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <h3 class="filter-group-title">Price Range</h3>
+                <div class="price-inputs">
+                    <input type="number" id="priceMin" class="price-input" placeholder="Min" min="0">
+                    <input type="number" id="priceMax" class="price-input" placeholder="Max" min="0">
+                </div>
+            </div>
+        </aside>
+
+        <!-- Right Grid Catalog -->
+        <section class="catalog-section">
+            <div class="catalog-header">
+                <div class="product-count">
+                    Showing <span id="currentCount">0</span> of <span id="totalCount">0</span> items
+                </div>
+                <div class="catalog-sort">
+                    <select id="sortBy" aria-label="Sort products">
+                        <option value="newest">Newest Releases</option>
+                        <option value="price_asc">Price: Low to High</option>
+                        <option value="price_desc">Price: High to Low</option>
+                        <option value="name_asc">Alphabetical: A to Z</option>
+                        <option value="name_desc">Alphabetical: Z to A</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="searchResultsGrid" class="category-products-grid">
+                <!-- Products load dynamically -->
+            </div>
+
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="load-more-btn" disabled>Load More</button>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="foot">
+        <div class="logo"></div>
+        <p>&copy; 2026 YJ Watches. Premium Cyberpunk Watches.</p>
+    </div>
+</footer>
+
+<script type="module" src="js/authNav.js"></script>
+<script type="module" src="js/pages/searchPage.js"></script>
+<script type="module" src="js/brandLogo.js"></script>
+</body>
+</html>

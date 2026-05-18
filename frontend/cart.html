@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart | YJ Watches</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/cart.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <header class="cart-header">
+    <div class="cart-header-left">
+      <a href="Home.html" class="cart-back-btn" title="Back to shop">
+        ← Back
+      </a>
+      <div class="cart-logo"></div>
+    </div>
+    <nav class="cart-nav">
+      <a href="Home.html" class="cart-nav-link">Home</a>
+      <a href="About.html" class="cart-nav-link">About</a>
+      <a href="cart.html" class="cart-nav-link active">Cart</a>
+      <a href="index.html" id="authLink" class="cart-nav-link">Login</a>
+    </nav>
+  </header>
+
+  <!-- ── Page Body ──────────────────────────────────────────────────────── -->
+  <main class="cart-main">
+
+    <div class="cart-page-header">
+      <h1 class="cart-title">Your Cart</h1>
+      <span id="cartCount" class="cart-count">0 items</span>
+    </div>
+
+    <!-- Cart items list -->
+    <div class="cart-layout">
+
+      <section class="cart-items-section">
+        <div id="cartItems">
+          <!-- Populated by cartPage.js -->
+        </div>
+      </section>
+
+      <!-- Order summary panel -->
+      <aside class="cart-summary-panel">
+        <h2 class="summary-title">Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>$<span id="cartTotal">0.00</span></span>
+        </div>
+
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span class="summary-free">Free</span>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <div class="summary-row summary-grand">
+          <span>Total</span>
+          <span>$<span id="cartGrandTotal">0.00</span></span>
+        </div>
+
+        <button class="checkout-btn" id="checkoutBtn">
+          Proceed to Checkout
+        </button>
+
+        <a href="Home.html" class="continue-shopping-link">← Continue Shopping</a>
+      </aside>
+
+    </div>
+  </main>
+
+  <script type="module" src="js/cart.js"></script>
+  <script type="module" src="js/authNav.js"></script>
+
+  <!-- Sync grand total with cartTotal -->
+  <script>
+    const cartTotalEl = document.getElementById('cartTotal');
+    const grandTotalEl = document.getElementById('cartGrandTotal');
+    if (cartTotalEl && grandTotalEl) {
+      const observer = new MutationObserver(() => {
+        grandTotalEl.textContent = cartTotalEl.textContent;
+      });
+      observer.observe(cartTotalEl, { childList: true, characterData: true, subtree: true });
+    }
+  </script>
+  <script type="module" src="js/brandLogo.js"></script>
+</body>
+</html>

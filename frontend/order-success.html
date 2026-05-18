@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Success | YJ Watches</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/order-success.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="success-shell">
+    <header class="success-header">
+      <div class="success-brand">YJ WATCHES</div>
+      <a href="Home.html" class="success-nav-link">← Continue Shopping</a>
+    </header>
+
+    <main class="success-main">
+      <div class="success-card">
+        <div class="success-outer-glow"></div>
+        <div class="success-mark-wrapper">
+          <div class="success-mark"><span>✓</span></div>
+        </div>
+
+        <h1>Order Placed Successfully</h1>
+        <p class="success-subtitle">Thank you for shopping with YJ Watches.</p>
+        <p class="success-description">Your premium timepiece order has been successfully reserved and will be processed soon.</p>
+
+        <div class="order-summary-box">
+          <div class="summary-row">
+            <span class="summary-label">Order ID</span>
+            <span id="orderId" class="summary-value">#YJW-20481</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Items</span>
+            <span id="orderItems" class="summary-value">0 items</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Total</span>
+            <span id="orderTotal" class="summary-value">$0.00</span>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a href="Home.html" class="success-button continue-btn">Continue Shopping</a>
+          <a href="cart.html" class="success-button outline-btn">View Cart</a>
+        </div>
+      </div>
+
+      <div id="confetti" class="confetti"></div>
+    </main>
+  </div>
+
+  <script type="module" src="js/order-success.js"></script>
+  <script type="module" src="js/authNav.js"></script>
+  <script type="module" src="js/brandLogo.js"></script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/Home.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/repalash/gilroy-free-webfont@master/Gilroy-ExtraBold.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="head-bar">
+
+    <!-- Logo -->
+    <div class="logo"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="homebtn">
+          <a href="Home.html" class="nav-link">Home</a>
+        </div>  
+        
+        <div class="categorybtn">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-category">
+                <a href="category.html?category=Luxury">Luxury</a>
+                <a href="category.html?category=Sport">Sport</a>
+                <a href="category.html?category=Classic">Classic</a>
+                <a href="category.html?category=Smart">Smart</a>
+                <a href="category.html?category=Fitness">Fitness</a>
+                <a href="category.html?category=Casual">Casual</a>
+                <a href="category.html?category=Premium">Premium</a>
+                <a href="category.html?category=Digital">Digital</a>
+                <a href="category.html?category=Women">Women</a>
+                <a href="category.html?category=Men">Men</a>
+            </div>
+        </div>
+        
+        <div class="homebtn">
+          <a href="About.html" class="nav-link">About</a>
+        </div> 
+
+        <div class="homebtn">
+          <a href="cart.html" class="nav-link">🛒Cart</a>
+        </div> 
+   
+        <div class="homebtn">
+          <a href="index.html" id="authLink" class="nav-link">Login</a>
+        </div> 
+    </nav>
+
+    <!-- Search -->
+    <form class="search-bar">
+        <input type="text" aria-label="Search products" placeholder="Search">
+    </form>
+
+</header>
+
+<div id="content">
+  
+  <!-- Hero Section -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas" class="hero-canvas"></canvas>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+
+  <div class="hero-inner">
+
+    <!-- Text Column -->
+    <div class="hero-text-col">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        New Collection 2026
+      </div>
+
+      <h1 class="hero-headline">
+        <span class="hl-1">Timeless</span>
+        <span class="hl-2">Luxury.</span>
+        <span class="hl-3">Redefined.</span>
+      </h1>
+
+      <p class="hero-sub">
+        Discover handcrafted timepieces built for those who demand
+        precision, elegance, and uncompromising quality.
+      </p>
+
+      <div class="hero-cta-row">
+        <a href="#products" class="hero-cta-primary">
+          Shop Now
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#categories" class="hero-cta-secondary">Explore Collection</a>
+      </div>
+
+      <div class="hero-stats-row">
+        <div class="hero-stat"><b class="stat-num">500+</b><span class="stat-lbl">Watches</span></div>
+        <div class="stat-sep"></div>
+        <div class="hero-stat"><b class="stat-num">50K+</b><span class="stat-lbl">Clients</span></div>
+        <div class="stat-sep"></div>
+        <div class="hero-stat"><b class="stat-num">15+</b><span class="stat-lbl">Brands</span></div>
+      </div>
+    </div>
+
+    <!-- Visual Column -->
+    <div class="hero-visual-col">
+      <div class="watch-stage">
+        <div class="watch-glow"></div>
+        <div class="watch-ring watch-ring-1"></div>
+        <div class="watch-ring watch-ring-2"></div>
+        <div class="watch-ring watch-ring-3"></div>
+        <div class="watch-frame">
+          <img src="images/Rolex2.png" alt="Premium Luxury Watch" class="watch-img">
+        </div>
+        <!-- Floating info cards -->
+        <div class="fc fc-1"><span class="fc-icon">⭐</span><div class="fc-text"><div class="fc-title">Top Rated</div><div class="fc-val">4.9 / 5.0</div></div></div>
+        <div class="fc fc-2"><span class="fc-icon">🚚</span><div class="fc-text"><div class="fc-title">Free Shipping</div><div class="fc-val">Worldwide</div></div></div>
+        <div class="fc fc-3"><span class="fc-icon">🛡️</span><div class="fc-text"><div class="fc-title">Authentic</div><div class="fc-val">100% Genuine</div></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Category Section -->
+<div class="categories-section" id="categories">
+  <h3>Explore Our Collections</h3>
+  <div class="wrapper">
+
+  <!-- MEN CATEGORY -->
+    <div class="category-card">
+      <div class="category-image">
+        <img src="images/men logo.avif" alt="Men Watches" loading="lazy">
+      </div>
+      <p class="category-title">MEN</p>
+    </div>
+
+      <!-- WOMEN CATEGORY -->
+    <div class="category-card">
+      <div class="category-image">
+        <img src="images/women-logo.jpg" alt="Women Watches" loading="lazy">
+      </div>
+      <p class="category-title">WOMEN</p>
+    </div>
+
+    
+      <!-- LUXURY WATCH CATEGORY -->
+    <div class="category-card">
+      <div class="category-image">
+        <img src="images/item1.jpg" alt="Luxury Watches" loading="lazy">
+      </div>
+      <p class="category-title">LUXURY WATCH</p>
+    </div>  
+
+      <!-- SMART WATCH CATEGORY -->
+    <div class="category-card">
+      <div class="category-image">
+        <img src="images/smartwatch logo.jpg" alt="Smart Watches" loading="lazy">
+      </div>
+      <p class="category-title">SMART WATCH</p>
+    </div>
+
+
+      <!-- FITNESS WATCH CATEGORY -->
+    <div class="category-card">
+      <div class="category-image">
+        <img src="images/fitness band.jpg" alt="Fitness Watches" loading="lazy">
+      </div>
+      <p class="category-title">FITNESS WATCH</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Product Section -->
+<div class="product" id="products">
+  <h3>Featured Products</h3>
+
+  <div class="product-grid" id="productGrid">
+    <!-- Products will load here dynamically -->
+  </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-container">
+
+     <div class="footer-brand">
+      <h2></h2>
+      <p>
+        Premium watches curated for elegance, precision, and timeless luxury.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="category.html">Categories</a></li>
+        <li><a href="offers.html">Offers</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-categories">
+    <h3>Categories</h3>
+      <ul>
+        <li><a href="category.html?category=Men">Men Watches</a></li>
+        <li><a href="category.html?category=Women">Women Watches</a></li>
+        <li><a href="category.html?category=Luxury">Luxury Watches</a></li>
+        <li><a href="category.html?category=Smart">Smart Watches</a></li>
+        <li><a href="category.html?category=Fitness">Fitness Watches</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>Email:support@yjwatches.com</p>
+      <p>Phone: +1 234 567 890</p>
+     </div>
+
+</div>
+
+  <div class="footer-bottom">
+    © 2026 YJ Watches. All rights reserved.
+  </div>
+
+</footer>
+
+<script type="module" src="js/Home.js"></script>
+<script type="module" src="js/authNav.js"></script>
+<script src="js/heroParticles.js" defer></script>
+<script type="module" src="js/brandLogo.js"></script>
+</body>
+</html>
+

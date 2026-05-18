@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | YJ Watches</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/login.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Logo -->
+  <div class="logo"></div>
+
+  <!-- Login Wrapper -->
+  <div class="wrapper">
+    
+    <form class="login" action="#" method="POST">
+
+      <h2 class="login-title">Login to Your Account</h2>
+
+      <!-- Username -->
+      <div class="input-group">
+            <input type="email" id="email" aria-label="Email Address" placeholder="Enter Email" required>
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <input id="password" aria-label="Password" minlength="8" type="password" name="password" placeholder="Enter Password" required>
+      </div>
+
+      <!-- Forgot Password -->
+      <a href="#" class="forgot-link">Forgot Password?</a>
+
+      <!-- Login Button -->
+      <button id="loginbtn" type="submit" class="login-btn">
+        Login
+      </button>
+
+      <!-- Sign Up Link -->
+      <p class="signup-link"> Don’t have an account? <a href="signup.html">Sign Up</a></p>
+
+    </form>
+
+  </div>
+<script type="module" src="js/login.js"></script>
+<script type="module" src="js/brandLogo.js"></script>
+</body>
+</html>

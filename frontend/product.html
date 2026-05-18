@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | YJ Watches</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/Home.css">
+    <link rel="stylesheet" href="css/product.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="head-bar">
+    <!-- Logo -->
+    <div class="logo"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="homebtn">
+            <a href="Home.html" class="nav-link">Home</a>
+        </div>  
+        
+        <div class="categorybtn">
+            <button class="dropbtn">Categories</button>
+            <div class="dropdown-category">
+                <a href="category.html?category=Luxury">Luxury</a>
+                <a href="category.html?category=Sport">Sport</a>
+                <a href="category.html?category=Classic">Classic</a>
+                <a href="category.html?category=Smart">Smart</a>
+                <a href="category.html?category=Fitness">Fitness</a>
+                <a href="category.html?category=Casual">Casual</a>
+                <a href="category.html?category=Premium">Premium</a>
+                <a href="category.html?category=Digital">Digital</a>
+                <a href="category.html?category=Women">Women</a>
+                <a href="category.html?category=Men">Men</a>
+            </div>
+        </div>
+        
+        <div class="homebtn">
+            <a href="About.html" class="nav-link">About</a>
+        </div> 
+
+        <div class="homebtn">
+            <a href="cart.html" class="nav-link">Cart</a>
+        </div>
+
+        <div class="homebtn">
+            <a href="index.html" id="authLink" class="nav-link">Login</a>
+        </div>
+    </nav>
+
+    <!-- Search -->
+    <form class="search-bar">
+        <input type="text" aria-label="Search products" placeholder="Search">
+    </form>
+</header>
+
+<main class="product-detail-main">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" id="breadcrumbsNav">
+        <a href="Home.html">Home</a>
+        <span class="separator">&gt;</span>
+        <a href="#" id="breadcrumbCategory">Collection</a>
+        <span class="separator">&gt;</span>
+        <span id="breadcrumbProduct" class="current">Timepiece</span>
+    </nav>
+
+    <!-- Product Layout Grid -->
+    <div class="product-details-grid" id="productDetailGrid">
+        <!-- Dynamic loading elements will go here -->
+        <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #94a3b8;">
+            <div style="font-family: 'Orbitron', sans-serif; font-size: 18px; margin-bottom: 12px; color: white;">Synchronizing Quantum Dials...</div>
+            <div style="font-size: 14px;">Retrieving detailed watch metrics from server.</div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="related-products-section">
+        <h2 class="related-section-title">✨ Related Watch Releases</h2>
+        <div id="relatedProductsGrid" class="category-products-grid">
+            <!-- 4 related items rendered dynamically -->
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="foot">
+        <div class="logo"></div>
+        <p>&copy; 2026 YJ Watches. Premium Cyberpunk Watches.</p>
+    </div>
+</footer>
+
+<script type="module" src="js/authNav.js"></script>
+<script type="module" src="js/pages/productPage.js"></script>
+<script type="module" src="js/brandLogo.js"></script>
+</body>
+</html>
