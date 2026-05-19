@@ -10,8 +10,13 @@ Premium futuristic luxury watch e-commerce platform built with the MERN stack.
 YJ Watches delivers a premium luxury watch e-commerce experience with a futuristic cyberpunk interface, polished glassmorphism details, and responsive frontend architecture. The project pairs a modern static storefront with a MERN-style backend integration, secure JWT authentication, and a refined shopping flow built for portfolio showcase and recruiter review.
 
 ## 🌐 Live Demo
-Frontend: Coming Soon  
-Backend API: Coming Soon
+Frontend: https://yj-watches.vercel.app/  
+Backend API: https://yj-watches-backend.onrender.com/
+
+## 🚀 Deployment
+- Frontend deployed on Vercel
+- Backend deployed on Render
+- Database hosted on MongoDB Atlas
 
 ## 🎯 Feature Status
 | Feature | Status |

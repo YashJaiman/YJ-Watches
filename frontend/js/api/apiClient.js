@@ -16,7 +16,16 @@ async function fetchApi(path, options = {}) {
   };
 
   if (!USE_MOCK_API) {
-    const response = await fetch(`${API_BASE_URL}${path}`, config);
+    let response;
+
+    try {
+      response = await fetch(`${API_BASE_URL}${path}`, config);
+    } catch (fetchError) {
+      const error = new Error('Network error or backend unavailable');
+      error.status = 0;
+      throw error;
+    }
+
     const text = await response.text();
     let body = null;
 

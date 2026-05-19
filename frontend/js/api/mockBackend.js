@@ -179,7 +179,7 @@ function handleLogin(body) {
 }
 
 function handleGetProducts(url) {
-  const urlObject = new URL(url, 'http://localhost');
+  const urlObject = new URL(url, 'https://example.com');
   const query = Object.fromEntries(urlObject.searchParams.entries());
   const products = getProducts();
   return applyQueryFilters(products, query);
@@ -254,7 +254,7 @@ function handleDeleteCartItem(id, headers) {
 }
 
 function parseRoute(route) {
-  const url = new URL(route, 'http://localhost');
+  const url = new URL(route, 'https://example.com');
   const pathname = url.pathname;
   const segments = pathname.split('/').filter(Boolean);
   return { pathname, segments, query: Object.fromEntries(url.searchParams.entries()) };
