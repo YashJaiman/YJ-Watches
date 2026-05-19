@@ -878,6 +878,9 @@ h3::after {
 .product-actions {
   display: flex;
   justify-content: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .add-to-cart-btn {

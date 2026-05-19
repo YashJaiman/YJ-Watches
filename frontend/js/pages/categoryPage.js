@@ -174,6 +174,32 @@ function removeSkeletons() {
   skeletons.forEach(s => s.remove());
 }
 
+function updateCardButtonState(card, product, cartItem) {
+  const actionsDiv = card.querySelector('.product-actions');
+  if (!actionsDiv) return;
+
+  const html = cartItem ? `
+    <div class="quantity-control" data-id="${product._id || product.id}">
+      <button class="decrease" aria-label="Decrease quantity" title="Decrease quantity">−</button>
+      <span class="qty">${cartItem.quantity}</span>
+      <button class="increase" aria-label="Increase quantity" title="Increase quantity">+</button>
+    </div>
+  ` : `
+    <button class="add-to-cart-btn" data-id="${product._id || product.id}" aria-label="Add ${product.name} to cart" title="Add to cart">Add to Cart</button>
+  `;
+
+  // Fade out
+  actionsDiv.style.opacity = '0';
+  actionsDiv.style.transform = 'scale(0.95)';
+  
+  setTimeout(() => {
+    actionsDiv.innerHTML = html;
+    // Fade in
+    actionsDiv.style.opacity = '1';
+    actionsDiv.style.transform = 'scale(1)';
+  }, 150);
+}
+
 function setupEventListeners() {
   // Sort event
   sortBySelect.addEventListener('change', (e) => {
@@ -233,8 +259,13 @@ function setupEventListeners() {
       try {
         await addToCart(productId);
         await loadCart();
-        await loadProducts(false); // Quick update
-        // Show subtle notification or flash card
+        
+        // Find the product in productsList
+        const product = productsList.find(p => String(p._id || p.id) === String(productId));
+        if (product) {
+          const cartItem = cartItems.find(item => String(item.productId || item._id) === String(productId));
+          updateCardButtonState(card, product, cartItem);
+        }
       } catch (err) {
         if (err.message && err.message.toLowerCase().includes('unauthorized')) {
           globalThis.location.assign('index.html');
@@ -256,13 +287,15 @@ function setupEventListeners() {
       try {
         await updateCartItem(productId, nextQty);
         await loadCart();
-        // Redraw grid
-        gridContainer.innerHTML = '';
-        productsList.forEach(product => {
-          const item = cartItems.find(itm => String(itm.productId || itm._id) === String(product._id || product.id));
-          const el = createProductCard(product, item);
-          gridContainer.appendChild(el);
-        });
+        
+        // Update just this card's button state
+        const product = productsList.find(p => String(p._id || p.id) === String(productId));
+        if (product) {
+          const updatedCartItem = nextQty > 0 
+            ? cartItems.find(item => String(item.productId || item._id) === String(productId))
+            : null;
+          updateCardButtonState(card, product, updatedCartItem);
+        }
       } catch (err) {
         console.error('Quantity update error:', err);
       }
