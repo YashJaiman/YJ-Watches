@@ -1,5 +1,7 @@
 import { isAuthenticated, logout, getUser } from './services/authService.js';
 import { getProducts } from './services/productService.js';
+import { getCartCount, onCartUpdate, syncCartCount } from './utils/cartState.js';
+import { getCart } from './services/cartService.js';
 
 function initAuthNav() {
   const authLink = document.getElementById('authLink');
@@ -24,6 +26,81 @@ function initAuthNav() {
   }
 
   updateAuthLink();
+}
+
+function initCartCounter() {
+  const cartLink = document.querySelector('a[href="cart.html"]');
+  if (!cartLink) return;
+
+  // Create or find badge element
+  let badge = cartLink.querySelector('.cart-badge');
+  if (!badge) {
+    badge = document.createElement('span');
+    badge.className = 'cart-badge';
+    cartLink.appendChild(badge);
+    
+    // Add CSS for badge if not already there
+    if (!document.getElementById('cart-badge-styles')) {
+      const style = document.createElement('style');
+      style.id = 'cart-badge-styles';
+      style.textContent = `
+        a[href="cart.html"] {
+          position: relative;
+          display: inline-block;
+        }
+        .cart-badge {
+          position: absolute;
+          top: -6px;
+          right: -8px;
+          background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+          color: #020617;
+          font-size: 11px;
+          font-weight: 700;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+          opacity: 0;
+          transform: scale(0);
+          transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        .cart-badge.active {
+          opacity: 1;
+          transform: scale(1);
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
+  // Update badge count
+  function updateBadge() {
+    const count = getCartCount();
+    if (count > 0) {
+      badge.textContent = count > 99 ? '99+' : count;
+      badge.classList.add('active');
+    } else {
+      badge.classList.remove('active');
+    }
+  }
+
+  // Initial update
+  updateBadge();
+
+  // Listen for cart updates
+  onCartUpdate((count) => {
+    updateBadge();
+  });
+
+  // Sync from server on page load if authenticated
+  if (isAuthenticated()) {
+    getCart()
+      .then(cartItems => syncCartCount(cartItems))
+      .catch(() => {});
+  }
 }
 
 function initSearchSuggestions() {
@@ -133,4 +210,5 @@ function escapeRegExp(string) {
 }
 
 initAuthNav();
+initCartCounter();
 initSearchSuggestions();

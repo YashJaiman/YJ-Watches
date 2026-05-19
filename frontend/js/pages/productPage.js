@@ -1,6 +1,8 @@
 import { getProductById, getProducts } from '../services/productService.js';
 import { getCart, addToCart, updateCartItem } from '../services/cartService.js';
 import { createProductCard } from '../components/productCard.js';
+import { showSuccess, showError } from '../utils/notifications.js';
+import { syncCartCount, decrementCartCount, incrementCartCount } from '../utils/cartState.js';
 
 let currentProductId = '';
 let currentProduct = null;
@@ -44,6 +46,7 @@ async function loadCart() {
   try {
     const cart = await getCart();
     cartItems = Array.isArray(cart) ? cart : cart?.items || [];
+    syncCartCount(cartItems);
   } catch (err) {
     console.error('Cart load error:', err);
   }
@@ -148,17 +151,27 @@ function renderDetailsPanel(product) {
   actionBlock.addEventListener('click', async (e) => {
     const target = e.target;
     if (target.id === 'addToCartBtn') {
+      // Show loading state
+      const btn = target;
+      const originalText = btn.textContent;
+      btn.innerHTML = '<span class="loading-spinner"></span> Adding...';
+      btn.disabled = true;
+      
       try {
         await addToCart(product._id || product.id);
         await loadCart();
+        incrementCartCount();
+        showSuccess(`${product.name} added to cart`);
         renderDetailsPanel(product);
         setupZoomEffect();
       } catch (err) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
         if (err.message && err.message.toLowerCase().includes('unauthorized')) {
           globalThis.location.assign('index.html');
           return;
         }
-        console.error('Cart detail add error:', err);
+        showError('Failed to add to cart');
       }
       return;
     }
@@ -173,10 +186,21 @@ function renderDetailsPanel(product) {
       try {
         await updateCartItem(product._id || product.id, nextQty);
         await loadCart();
+        syncCartCount(cartItems);
+        
+        if (nextQty > item.quantity) {
+          showSuccess('Quantity increased');
+        } else if (nextQty === 0) {
+          showSuccess('Removed from cart');
+          decrementCartCount();
+        } else {
+          showSuccess('Quantity decreased');
+        }
+        
         renderDetailsPanel(product);
         setupZoomEffect();
       } catch (err) {
-        console.error('Cart quantity adjust error:', err);
+        showError('Failed to update quantity');
       }
     }
   });
@@ -242,9 +266,12 @@ async function loadRelatedProducts(category) {
 
       if (target.classList.contains('add-to-cart-btn')) {
         e.stopPropagation();
+        const product = filtered.find(p => String(p._id || p.id) === String(productId));
         try {
           await addToCart(productId);
           await loadCart();
+          incrementCartCount();
+          showSuccess(`${product?.name || 'Item'} added to cart`);
           await loadRelatedProducts(category); // Re-render
           // Update details panel in case it affects current cart status
           await loadProductDetails();
@@ -253,7 +280,7 @@ async function loadRelatedProducts(category) {
             globalThis.location.assign('index.html');
             return;
           }
-          console.error('Related cart add error:', err);
+          showError('Failed to add to cart');
         }
         return;
       }
@@ -268,10 +295,21 @@ async function loadRelatedProducts(category) {
         try {
           await updateCartItem(productId, nextQty);
           await loadCart();
+          syncCartCount(cartItems);
+          
+          if (nextQty > cartItem.quantity) {
+            showSuccess('Quantity increased');
+          } else if (nextQty === 0) {
+            showSuccess('Removed from cart');
+            decrementCartCount();
+          } else {
+            showSuccess('Quantity decreased');
+          }
+          
           await loadRelatedProducts(category);
           await loadProductDetails();
         } catch (err) {
-          console.error('Related quantity update error:', err);
+          showError('Failed to update quantity');
         }
         return;
       }

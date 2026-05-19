@@ -1,6 +1,8 @@
 import { getProducts } from '../services/productService.js';
 import { getCart, addToCart, updateCartItem } from '../services/cartService.js';
 import { createProductCard } from '../components/productCard.js';
+import { showSuccess, showError } from '../utils/notifications.js';
+import { syncCartCount, decrementCartCount, incrementCartCount } from '../utils/cartState.js';
 
 const categoryDescriptions = {
   Luxury: 'Discover precision-crafted Swiss masterpieces made for the most discerning collections.',
@@ -56,6 +58,7 @@ async function loadCart() {
   try {
     const cart = await getCart();
     cartItems = Array.isArray(cart) ? cart : cart?.items || [];
+    syncCartCount(cartItems);
   } catch (err) {
     console.error('Cart load error:', err);
   }
@@ -174,9 +177,19 @@ function removeSkeletons() {
   skeletons.forEach(s => s.remove());
 }
 
-function updateCardButtonState(card, product, cartItem) {
+function updateCardButtonState(card, product, cartItem, isLoading = false) {
   const actionsDiv = card.querySelector('.product-actions');
   if (!actionsDiv) return;
+
+  if (isLoading) {
+    actionsDiv.innerHTML = `
+      <div class="add-to-cart-btn loading" disabled>
+        <span class="loading-spinner"></span>
+        <span>Adding...</span>
+      </div>
+    `;
+    return;
+  }
 
   const html = cartItem ? `
     <div class="quantity-control" data-id="${product._id || product.id}">
@@ -256,22 +269,29 @@ function setupEventListeners() {
     // Direct add-to-cart clicks
     if (target.classList.contains('add-to-cart-btn')) {
       e.stopPropagation();
+      
+      const product = productsList.find(p => String(p._id || p.id) === String(productId));
+      if (!product) return;
+      
+      // Show loading state
+      updateCardButtonState(card, product, null, true);
+      
       try {
         await addToCart(productId);
         await loadCart();
+        incrementCartCount();
         
-        // Find the product in productsList
-        const product = productsList.find(p => String(p._id || p.id) === String(productId));
-        if (product) {
-          const cartItem = cartItems.find(item => String(item.productId || item._id) === String(productId));
-          updateCardButtonState(card, product, cartItem);
-        }
+        // Update button state
+        const cartItem = cartItems.find(item => String(item.productId || item._id) === String(productId));
+        updateCardButtonState(card, product, cartItem);
+        showSuccess(`${product.name} added to cart`);
       } catch (err) {
         if (err.message && err.message.toLowerCase().includes('unauthorized')) {
           globalThis.location.assign('index.html');
           return;
         }
-        console.error('Cart add error:', err);
+        updateCardButtonState(card, product, null, false);
+        showError('Failed to add to cart');
       }
       return;
     }
@@ -288,6 +308,9 @@ function setupEventListeners() {
         await updateCartItem(productId, nextQty);
         await loadCart();
         
+        // Update cart count
+        syncCartCount(cartItems);
+        
         // Update just this card's button state
         const product = productsList.find(p => String(p._id || p.id) === String(productId));
         if (product) {
@@ -295,9 +318,18 @@ function setupEventListeners() {
             ? cartItems.find(item => String(item.productId || item._id) === String(productId))
             : null;
           updateCardButtonState(card, product, updatedCartItem);
+          
+          if (nextQty > cartItem.quantity) {
+            showSuccess('Quantity increased');
+          } else if (nextQty === 0) {
+            showSuccess('Removed from cart');
+            decrementCartCount();
+          } else {
+            showSuccess('Quantity decreased');
+          }
         }
       } catch (err) {
-        console.error('Quantity update error:', err);
+        showError('Failed to update quantity');
       }
       return;
     }
